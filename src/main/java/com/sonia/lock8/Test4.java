@@ -22,7 +22,11 @@ public class Test4 {
         TimeUnit.SECONDS.sleep(1);
 
         new Thread(()->{
-            data.call();
+            try {
+                data.call();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }).start();
     }
 }
@@ -33,7 +37,7 @@ class Data4 {
         System.out.println("+++++++++++++++++++++++发送短信");
     }
 
-    public  synchronized void call() {
+    public  synchronized void call() throws InterruptedException {
         System.out.println("call");
     }
 }
