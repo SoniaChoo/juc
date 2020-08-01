@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class Lazyman {
     private Lazyman(){}
-    private  static Lazyman lazyman;
-    public static Lazyman getInstance(){
+    private volatile static Lazyman lazyman;
+    public  static Lazyman getInstance(){
         if (lazyman == null){
             synchronized (Lazyman.class) {
                 if (lazyman == null) {
@@ -17,6 +17,9 @@ public class Lazyman {
     }
 
     public static void main(String[] args) {
-        Lazyman instance = Lazyman.getInstance();
+
+        Lazyman instance1 = Lazyman.getInstance();
+        Lazyman instance2 = Lazyman.getInstance();
+
     }
 }
